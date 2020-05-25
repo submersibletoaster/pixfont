@@ -50,7 +50,7 @@ func generatePixFont(name string, w, h int, v bool, d map[rune]map[int]string) {
 	template := `
 		package %s
 
-		import "github.com/pbnjay/pixfont"
+		import "github.com/submersibletoaster/pixfont"
 
 		var Font *pixfont.PixFont
 		var charMap map[rune]uint16
