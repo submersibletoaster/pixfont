@@ -30,14 +30,14 @@ type Drawable interface {
 type PixFont struct {
 	charWidth    uint8
 	charHeight   uint8
-	charmap      map[rune]uint16
+	charmap      map[rune]uint32
 	data         []uint32
 	varCharWidth uint8
 }
 
 // NewPixFont creates a new PixFont with the provided character width/height and
 // character map of offsets into a packed uint32 array of bits.
-func NewPixFont(w, h uint8, cm map[rune]uint16, d []uint32) *PixFont {
+func NewPixFont(w, h uint8, cm map[rune]uint32, d []uint32) *PixFont {
 	return &PixFont{w, h, cm, d, w}
 }
 

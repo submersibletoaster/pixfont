@@ -1,1 +1,4 @@
-module github.com/pbnjay/pixfont
+module github.com/submersibletoaster/pixfont
+
+go 1.14
+

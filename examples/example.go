@@ -7,7 +7,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/pbnjay/pixfont"
+	"github.com/submersibletoaster/pixfont"
 
 	// replace and uncomment to try your own font
 	//"path/to/minecraftia"

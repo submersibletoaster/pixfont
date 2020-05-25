@@ -30,7 +30,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/pbnjay/pixfont"
+	"github.com/submersibletoaster/pixfont"
 )
 
 var (
@@ -53,16 +53,21 @@ func generatePixFont(name string, w, h int, v bool, d map[rune]map[int]string) {
 		import "github.com/pbnjay/pixfont"
 
 		var Font *pixfont.PixFont
+		var charMap map[rune]uint16
+		var data []uint32
+
+		func Data() { return data }
+		func CharMap() { return charMap }
 
 		func init() {
-			charMap := %#v
-			data := %#v
+			charMap = %#v
+			data = %#v
 			Font = pixfont.NewPixFont(%d, %d, charMap, data)
 			Font.SetVariableWidth(%t)
 		}
 	`
 	encoded := []uint32{}
-	cm := make(map[rune]uint16)
+	cm := make(map[rune]uint32)
 
 	// convert from simple character encoding to packed bitfield
 	// NB fonts should be at most 32 pixels wide to fit in the uint32
@@ -76,7 +81,7 @@ func generatePixFont(name string, w, h int, v bool, d map[rune]map[int]string) {
 			idx = len(encoded)
 		}
 
-		cm[c] = uint16(sub) | (uint16(idx) << 2)
+		cm[c] = uint32(sub) | (uint32(idx) << 2)
 		for y := 0; y < h; y++ {
 			var line uint32
 			var b uint32 = 1
