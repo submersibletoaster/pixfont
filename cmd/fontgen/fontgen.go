@@ -53,11 +53,11 @@ func generatePixFont(name string, w, h int, v bool, d map[rune]map[int]string) {
 		import "github.com/submersibletoaster/pixfont"
 
 		var Font *pixfont.PixFont
-		var charMap map[rune]uint16
+		var charMap map[rune]uint32
 		var data []uint32
 
-		func Data() { return data }
-		func CharMap() { return charMap }
+		func Data() []uint32 { return data }
+		func CharMap() map[rune]uint32 { return charMap }
 
 		func init() {
 			charMap = %#v
